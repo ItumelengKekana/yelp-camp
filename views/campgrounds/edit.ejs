@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate') %> 
+    <div class="row">
+    <h1 class="text-center">Edit Campground</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/campgrounds/<%= campground._id%>?_method=PUT" method="POST" class="validated-form" novalidate enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input class="form-control" type="text" id="title" name="campground[title]" value="<%= campground.title%>" required>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input  class="form-control" type="text" id="location" name="campground[location]" value="<%= campground.location%>" required>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Add More Images</label>
+                <input class="form-control" type="file" id="image" name="image" multiple>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Campground Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" placeholder="0.00" aria-label="Price" aria-describedby="price-label" id="price" name="campground[price]" value="<%= campground.price%>" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" type="text" id="description" name="campground[description]" required><%= campground.description%></textarea>
+            </div>
+            <div class="mb-3">
+                <% campground.image.forEach((img, i) => { %> 
+                    <img src="<%= img.thumbnail %>" alt="" class="img-thumbnail">
+                    <div class="form-check-inline">
+                        <label for="image-<%=i %>">Delete?</label>
+                        <input type="checkbox" name="deleteImages[]" id="image-<%=i %>" value="<%=img.filename%>">
+                    </div>
+                <% }) %> 
+                
+            </div>
+            <div class="mb-3">
+            <button class="btn btn-info">Update Campground</button>
+            </div>
+    </form>
+    <a class="btn btn-primary mb-3" href="/campgrounds/<%= campground._id%>">Back to Campground</a>
+    </div>
+</div>
