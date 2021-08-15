@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
-const Campground = require("../models/campground");
 const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
-const campground = require('../models/campground');
 const campgrounds = require('../controllers/campgrounds');
 const multer = require('multer');
 const {storage} = require('../cloudinary');
@@ -25,5 +23,3 @@ router.get("/:id/edit", isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditF
 
 
 module.exports = router;
-
-//h2TY69DqOwXxK4bd

@@ -11,7 +11,7 @@ const extension = (joi) =>({
         escapeHTML: {
             validate(value, helpers) {
                 const clean = sanitizeHtml(value, {
-                    alloedTags: [],
+                    allowedTags: [],
                     allowedAttributes: {},
                 });
                 if(clean !== value) return helpers.error('string.escapeHTML', {value})
